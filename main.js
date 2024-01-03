@@ -420,7 +420,7 @@ function canvasToNES(imageData){
 
         xtotal = (xtotal + 8) % width;
     }
-    PPFData.push(byteArray);
+    PPFData.push.apply(PPFData, byteArray);
 
     return PPFData;
 }
