@@ -81,7 +81,7 @@ var downloadNes = document.getElementById('nes')
 downloadNes.addEventListener('click', function(){
     var name = document.getElementById('nesfilename').value;
     spriteRomData = canvasToNES(imageData);
-    download(name || 'sprite.ppf', spriteRomData, 'octect/stream');
+    download(name || 'sprite.chr', spriteRomData, 'octect/stream');
 });
 
 var uploadNes = document.getElementById('nesfile')
@@ -371,12 +371,6 @@ function NEStoCanvas(byteArray){
 /// Translate raw canvas pixles to NES Binary
 
 function canvasToNES(imageData){
-	// PPF Header
-	var PPFData =
-	 {
-	     0x50, 0x50, 0x46, 0x76, 0x01, 0x00, 0x00, 0x00
-	 }; 
-
     // move 16 byte sprite and 512 sprites
     var byteArray = new Uint8Array(512 * 16);
 
@@ -425,9 +419,7 @@ function canvasToNES(imageData){
         xtotal = (xtotal + 8) % width;
     }
 
-    PPFData.push(byteArray);
-
-    return PPFData;
+    return byteArray;
 }
 
 
