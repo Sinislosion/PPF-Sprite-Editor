@@ -374,7 +374,7 @@ function canvasToNES(imageData){
     // move 16 byte sprite and 512 sprites
     var byteArray = new Uint8Array(512 * 16);
     //var PPFData = new Uint8Array(8);
-    var PPFData = {0x50, 0x50, 0x46, 0x76, 0x01, 0x00, 0x00, 0x00};
+    var PPFData = Array[0x50, 0x50, 0x46, 0x76, 0x01, 0x00, 0x00, 0x00];
 
     // tuple buffer
     var tupleBuffer = new Array(imageData.width * imageData.height);
