@@ -81,7 +81,7 @@ var downloadNes = document.getElementById('nes')
 downloadNes.addEventListener('click', function(){
     var name = document.getElementById('nesfilename').value;
     spriteRomData = canvasToNES(imageData);
-    download(name || 'sprite.chr', spriteRomData, 'octect/stream');
+    download(name || 'sprite.ppf', spriteRomData, 'octect/stream');
 });
 
 var uploadNes = document.getElementById('nesfile')
@@ -490,7 +490,7 @@ function readBlob() {
 /// Load up default sprite sheet
 
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'main.chr')
+xhr.open('GET', 'main.ppf')
 xhr.responseType = 'arraybuffer';
 
 xhr.addEventListener('load', function(evt){
