@@ -346,7 +346,7 @@ function NEStoCanvas(byteArray){
     //  (1,0) color 1
     //  (0,1) color 2
     //  (1,1) color 3
-    for(var b = 0; b < byteArray.length; b+=16){
+    for(var b = 8; b < byteArray.length; b+=16){
         ypos = Math.floor(b/height) * 8
         // draw sprite
         for(var i = 0; i < 8; i++){
