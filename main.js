@@ -80,7 +80,15 @@ function toggleGrid(evt){
 var downloadNes = document.getElementById('nes')
 downloadNes.addEventListener('click', function(){
     var name = document.getElementById('nesfilename').value;
-    var PPFData = [0x50, 0x50, 0x46, 0x76, 0x01, 0x00, 0x00, 0x00];
+    var PPFData = new Uint8Array(8)
+    PPFData[0] = 0x50;
+    PPFData[1] = 0x50;
+    PPFData[2] = 0x46;
+    PPFData[3] = 0x76;
+    PPFData[4] = 0x01;
+    PPFData[5] = 0x00;
+    PPFData[6] = 0x00;
+    PPFData[7] = 0x00;
     spriteRomData = canvasToNES(imageData);
     PPFData.push.apply(PPFData, spriteRomData);
     download(name || 'sprite.chr', PPFData, 'octect/stream');
