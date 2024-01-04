@@ -80,8 +80,10 @@ function toggleGrid(evt){
 var downloadNes = document.getElementById('nes')
 downloadNes.addEventListener('click', function(){
     var name = document.getElementById('nesfilename').value;
+    var PPFData = Uint8Array[0x50, 0x50, 0x46, 0x76, 0x01, 0x00, 0x00, 0x00];
     spriteRomData = canvasToNES(imageData);
-    download(name || 'sprite.chr', spriteRomData, 'octect/stream');
+    PPFData.push.apply(PPFData, spriteRomData);
+    download(name || 'sprite.chr', PPFData, 'octect/stream');
 });
 
 var uploadNes = document.getElementById('nesfile')
@@ -374,7 +376,6 @@ function canvasToNES(imageData){
     // move 16 byte sprite and 512 sprites
     var byteArray = new Uint8Array(512 * 16);
     //var PPFData = new Uint8Array(8);
-    var PPFData = Uint8Array[0x50, 0x50, 0x46, 0x76, 0x01, 0x00, 0x00, 0x00];
 
     // tuple buffer
     var tupleBuffer = new Array(imageData.width * imageData.height);
