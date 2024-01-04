@@ -80,18 +80,8 @@ function toggleGrid(evt){
 var downloadNes = document.getElementById('nes')
 downloadNes.addEventListener('click', function(){
     var name = document.getElementById('nesfilename').value;
-    var PPFData = new Uint8Array(8)
-    PPFData[0] = 0x50;
-    PPFData[1] = 0x50;
-    PPFData[2] = 0x46;
-    PPFData[3] = 0x76;
-    PPFData[4] = 0x01;
-    PPFData[5] = 0x00;
-    PPFData[6] = 0x00;
-    PPFData[7] = 0x00;
     spriteRomData = canvasToNES(imageData);
-    PPFData.push.apply(PPFData, spriteRomData);
-    download(name || 'sprite.chr', PPFData, 'octect/stream');
+    download(name || 'sprite.chr', spriteRomData, 'octect/stream');
 });
 
 var uploadNes = document.getElementById('nesfile')
@@ -384,6 +374,14 @@ function canvasToNES(imageData){
     // move 16 byte sprite and 512 sprites
     var byteArray = new Uint8Array(512 * 16);
     //var PPFData = new Uint8Array(8);
+    byteArray[0] = 0x50;
+    byteArray[1] = 0x50;
+    byteArray[2] = 0x46;
+    byteArray[3] = 0x76;
+    byteArray[4] = 0x01;
+   	byteArray[5] = 0x00;
+    byteArray[6] = 0x00;
+	byteArray[7] = 0x00;
 
     // tuple buffer
     var tupleBuffer = new Array(imageData.width * imageData.height);
@@ -406,7 +404,7 @@ function canvasToNES(imageData){
     // tuple buffer has imageData.width * imageData.heigh pixels, so divide that by 16 for sprites
     var xtotal = 0;
     var ytotal = 0;
-    for(var i = 0; i < byteArray.length; i+=8) {
+    for(var i = 8; i < byteArray.length; i+=8) {
         ytotal = Math.floor(i/height) * 8
         
         
