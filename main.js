@@ -37,20 +37,20 @@ var palette = {
         r: 0, 
         g: 0,
         b: 0,
-        nes: '0x0F'  
+        nes: '0x0D'  
     },
     color1 : { // rgb(248,56,0)
         r: 248,
         g: 56,
         b: 0,
-        nes: '0x16'
+        nes: '0x0D'
     },
 
     color2 : { // rgb(252,160,68)
         r: 252,
         g: 160,
         b: 68,
-        nes: '0x27'
+        nes: '0x00'
 
     },
 
@@ -58,7 +58,7 @@ var palette = {
         r: 172,
         g: 124,
         b: 0,
-        nes: '0x18'
+        nes: '0x20'
     }
 }
 
