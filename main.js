@@ -34,31 +34,31 @@ var mapping = ['background', 'color1', 'color2', 'color3']
 
 var palette = {
     background : {
-        r: 0, 
-        g: 0,
-        b: 0,
-        nes: '0x0F'  
+        r: 68, 
+        g: 47,
+        b: 243,
+        nes: '0x12'
     },
     color1 : { // rgb(248,56,0)
-        r: 248,
-        g: 56,
+        r: 0,
+        g: 0,
         b: 0,
-        nes: '0x16'
+        nes: '0x0F'
     },
 
     color2 : { // rgb(252,160,68)
-        r: 252,
-        g: 160,
-        b: 68,
-        nes: '0x27'
+        r: 105,
+        g: 105,
+        b: 105,
+        nes: '0x00'
 
     },
 
     color3 : { //rgb(172,124,0)
-        r: 172,
-        g: 124,
-        b: 0,
-        nes: '0x18'
+        r: 255,
+        g: 255,
+        b: 255,
+        nes: '0x20'
     }
 }
 
@@ -182,7 +182,7 @@ function updatePallet(){
     setElementColor('color2', c2.r, c2.g, c2.b);
     setElementColor('color3', c3.r, c3.g, c3.b);
 
-    document.getElementById('current').textContent = 'Palette String:' + [bgColor.nes, c1.nes, c2.nes, c3.nes].join(',').replace(/0x/g, '$');
+    document.getElementById('current').textContent = 'Palette String: ' + [bgColor.nes, c1.nes, c2.nes, c3.nes].join(', ').replace(/0x/g, 'PAL');
 
     document.getElementById('brush').style.color = getWhiteOrBlack(palette[selectedPalette]);
     document.getElementById('background').style.color = getWhiteOrBlack(bgColor);
@@ -209,12 +209,12 @@ document.getElementById('editor').addEventListener('mousemove', function(evt){
     document.getElementById('coord').innerText = 'Pixel (' + coords.x + ', ' + coords.y + ')';
 
     var ycoord = Math.floor((coords.y/8)) * 16;
-    var tile = Math.floor((coords.x) / 8 + ycoord).toString(16).toUpperCase();
+    var tile = Math.floor((coords.x) / 8 + ycoord).toString().toUpperCase();
     if(tile.length < 2){
         tile = '0' + tile;
     }
 
-    document.getElementById('tile').innerText = 'Tile $' + tile;
+    document.getElementById('tile').innerText = 'Tile ' + tile;
     if(_isMouseDown){
         handleDrawTool(evt);
     }
@@ -381,7 +381,7 @@ function canvasToNES(imageData){
     byteArray[4] = 0x01;
    	byteArray[5] = 0x00;
     byteArray[6] = 0x00;
-	byteArray[7] = 0x00;
+	  byteArray[7] = 0x00;
 
     // tuple buffer
     var tupleBuffer = new Array(imageData.width * imageData.height);
